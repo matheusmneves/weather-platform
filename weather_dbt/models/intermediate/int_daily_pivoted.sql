@@ -1,10 +1,20 @@
--- v1: intentionally hardcoded to get end-to-end working
+-- metadata-driven pivot: the column list is generated at compile time from int_station_elements (inventory ∩ curated config ∩ target stations)
+-- adding a 6th city or a new element = config change only, zero SQL edits
+
+{% set elements = dbt_utils.get_column_values(
+    table=ref('int_station_elements'),
+    column='element',
+    order_by='element'
+) %}
+
 select
     station_id,
     obs_date,
-    max(case when element = 'TMAX' then value end) / 10.0 as tmax,
-    max(case when element = 'TMIN' then value end) / 10.0 as tmin,
-    max(case when element = 'PRCP' then value end) / 10.0 as prcp
-from {{ ref('stg_observations') }}
-where passed_qa
+    {% for element in elements %}
+    max(case when element = '{{ element }}' then value_converted end)
+        as {{ element | lower }},
+    max(case when element = '{{ element }}' then is_trace end)
+        as {{ element | lower }}_is_trace{{ "," if not loop.last }}
+    {% endfor %}
+from {{ ref('int_observations_converted') }}
 group by 1, 2

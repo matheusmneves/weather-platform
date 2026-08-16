@@ -1,6 +1,9 @@
 select
     ts.city,
     st.station_name,
+    st.latitude,
+    st.longitude,
+    st.elevation_m,
     piv.*
 from {{ ref('int_daily_pivoted') }} as piv
 inner join {{ ref('target_stations') }} as ts
