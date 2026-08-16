@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: mart_daily_weather
+    description: "One row per target station per day, wide format, QA-passed values only, units converted."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [station_id, obs_date]
+    columns:
+      - name: station_id
+        tests: [not_null]
+      - name: obs_date
+        tests: [not_null]
+      - name: tmax
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: -60
+              max_value: 50
+
+  - name: mart_quality_summary
+    description: "Audit of quarantined (QA-flagged) rows. Makes exclusions visible and countable."

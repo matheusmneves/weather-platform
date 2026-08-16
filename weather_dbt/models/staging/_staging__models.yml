@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_observations
+    description: "One row per station-date-element. Nothing dropped; QA flags exposed as passed_qa."
+    columns:
+      - name: station_id
+        tests: [not_null]
+      - name: obs_date
+        tests: [not_null]
+      - name: element
+        tests: [not_null]
+      - name: value
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: -9998
+              config:
+                where: "element in ('TMAX', 'TMIN')"
+
+  - name: stg_stations
+    columns:
+      - name: station_id
+        tests: [not_null, unique]
+
+  - name: stg_inventory
+    columns:
+      - name: station_id
+        tests: [not_null]
