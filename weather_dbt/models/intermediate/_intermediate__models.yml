@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_observations_converted
+    description: >
+      Long-format observations with units converted via the curated element_config seed
+      (unit definitions sourced from NOAA readme.txt section III — note SNOW/SNWD are
+      whole mm, NOT tenths). The inner join to element_config doubles as the curated
+      element whitelist. Trace flag (mflag = T) is propagated.
+
+  - name: int_station_elements
+    description: >
+      The expectation contract: which elements SHOULD exist per target station according
+      to the NOAA inventory, intersected with the curated element list and the project
+      time window. Drives the dynamic pivot column list and enables distinguishing
+      "element never reported" (absent by design) from "value missing" (data gap).
+
+  - name: int_daily_pivoted
+    description: >
+      Wide daily table. Column list is generated at COMPILE TIME from int_station_elements
+      via dbt_utils.get_column_values — adding a city or element is a config change only.
