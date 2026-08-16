@@ -1,0 +1,43 @@
+# Column positions from NOAA
+
+ghcnd_stations:
+  filename: "ghcnd-stations.txt"
+  columns:
+    station_id:   {start: 1, end: 11, type: str}
+    latitude:     {start: 13, end: 20, type: str}
+    longitude:    {start: 22, end: 30, type: str}
+    elevation:    {start: 32, end: 37, type: str}
+    state:        {start: 39, end: 40, type: str}
+    station_name: {start: 42, end: 71, type: str}
+    gsn_flag:     {start: 73, end: 75, type: str}
+    hcn_crn_flag: {start: 77, end: 79, type: str}
+    wmo_id:       {start: 81, end: 85, type: str}
+
+ghcnd_inventory:
+  filename: "ghcnd-inventory.txt"
+  columns:
+    station_id:   {start: 1, end: 11, type: str}
+    latitude:     {start: 13, end: 20, type: str}
+    longitude:    {start: 22, end: 30, type: str}
+    element:      {start: 32, end: 35, type: str}
+    first_year:   {start: 37, end: 40, type: str}
+    last_year:    {start: 42, end: 45, type: str}
+
+ghcnd_countries:
+  filename: "ghcnd-countries.txt"
+  columns:
+    country_code: {start: 1, end: 2, type: str}
+    country_name: {start: 4, end: 64, type: str}
+
+observations:
+  filename: "*.csv.gz"
+  format: csv
+  columns:
+    station_id: str
+    observation_date: str
+    element: str
+    value: str
+    m_flag: str
+    q_flag: str
+    s_flag: str
+    observation_time: str
