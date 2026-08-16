@@ -1,0 +1,21 @@
+name: weather_dbt
+version: "1.0.0"
+profile: weather_dbt
+
+model-paths:  ["models"]
+seed-paths:   ["seeds"]
+macro-paths:  ["marcros"]
+
+vars:
+  # project time window
+  start_date: "2022-04-01"
+  end_date:   "2024-03-31"
+
+models:
+  weather_dbt:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

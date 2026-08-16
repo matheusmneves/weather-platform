@@ -1,0 +1,8 @@
+element,scale_divisor,unit,description
+TMAX,10,celsius,Maximum temperature
+TMIN,10,celsius,Minimum temperature
+TAVG,10,celsius,Average temperature
+PRCP,10,mm,Precipitation
+SNOW,1,mm,Snowfall
+SNWD,1,mm,Snow depth
+AWND,10,m/s,Average wind speed
