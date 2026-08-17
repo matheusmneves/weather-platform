@@ -7,7 +7,7 @@ A quick note on how this was built: I used an AI assistant as a sparring partner
 ## Quickstart
 
 ```
-git clone <repo> && cd weather-data-platform
+git clone <repo> && cd weather-platform
 make setup
 cp .env.example .env      # add your GEMINI_API_KEY
 make all
