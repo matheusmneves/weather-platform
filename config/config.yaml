@@ -13,7 +13,7 @@ paths:
   schemas: "config/fixed_width_schemas.yaml"
 
 narratives:
-  model_name: "gemini-2.5-flash"
+  model_name: "gemini-3.5-flash-lite"
   batch_size: 25
   sleep_between_batches_seconds: 5
   retry_seconds: 30

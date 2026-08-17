@@ -6,5 +6,3 @@ PRCP,10,mm,Precipitation
 SNOW,1,mm,Snowfall
 SNWD,1,mm,Snow depth
 AWND,10,m/s,Average wind speed
-WSFG,10,m/s,Peak gust wind speed
-WDFG,1,degrees,Direction of peak wind gust
